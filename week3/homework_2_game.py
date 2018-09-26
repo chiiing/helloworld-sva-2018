@@ -40,7 +40,7 @@ mission = "\033[5;31;47m" + 'Your mission is to rescue the princess from a drago
 
 # Location Setting
  
-location = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+location = [1, 2, 3, 4, 5,]
  
 l = sample(location,  1)   # Pick a random item from the list
 princessLocation = l[0]
@@ -55,31 +55,8 @@ def printGraphic(graphic):
         print "            _,-------,        _/ -|  \_     /~>. "
         print "         _-~ __--~~/\ |      (  \   /  )   | / | "
         print "      _-~__--    //   \\      \ *   * /   / | || "
-        print "   _-~_--       //     ||      \     /   | /  /|   < HAHAHA! The princess is mine!"
-        print "  ~ ~~~~-_     //       \\     |( . )|  / | || / "
-        print "          \   //         ||    | VWV | | /  ///  "
-        print "    |\     | //           \\ _/      |/ | ./ |   "
-        print "    | |    |// __         _-~         \// |  /   "
-        print "   /  /   //_-~  ~~--_ _-~  /          |\// /    "
-        print " |  |   /-~        _-~    (     /   |/ / /       "
-        print " /   /           _-~  __    |   |____|/          "
-        print "|   |__         / _-~  ~-_  (_______  `\         "
-        print "|      ~~--__--~ /  _     \        __\)))        "
-        print " \               _-~       |     ./  \           "
-        print "  ~~--__        /         /    _/     |          "
-        print "        ~~--___/       _-_____/      /           "
-        print "         _____/     _-_____/      _-~            "
-        print "      /^<  ___       -____         -____         "
-        print "         ~~   ~~--__      ``\--__       ``\      "
-        print "                    ~~--\)\)\)   ~~--\)\)\)      "
-
-    if (graphic == "dragonMad"):
-        print "                                     _/|__       "
-        print "            _,-------,        _/ -|  \_     /~>. "
-        print "         _-~ __--~~/\ |      (  \   /  )   | / | "
-        print "      _-~__--    //   \\      \ \   / /   / | || "
         print "   _-~_--       //     ||      \     /   | /  /|   < I will destroy you!!!!!!!"
-        print "  ~ ~~~~-_     //       \\     |( . )|  / | || / "
+        print "  ~ ~~~~-_     //       \\     |( . )|  / | || /     (You are burn by the dragon, game over!) "
         print "          \   //         ||    | VWV | | /  ///  "
         print "    |\     | //           \\ _/      |/ | ./ |   "
         print "    | |    |// __         _-~         \// |  /   "
@@ -124,10 +101,30 @@ def printGraphic(graphic):
         print "  EEEEE     |__|     EEEEE  "
         print "  EEEEEEE  (    )   EEEEEEE"
         print "  EEEEEEE  (|**|)  EEEEEEE  "
-        print "    EEEEE  /\  /\  EEEEE    "
-        print "      EEEEE)_||_(EEEEE      "
-        print "        ee/|\__/|\ee   |    "
+        print "    EEEEE  /\  /\  EEEEE        Thank you for coming."
+        print "      EEEEE)_||_(EEEEE       <  My princess was kidnap by a evil dragon."
+        print "        ee/|\__/|\ee   |        Would you please rescue her?"
         print "       eee|( __ )|eee- * -  "
+        print "      eeee||\  /||eeee/|    "
+        print "       ee ||/  \|| ee/      "
+        print "        __/(    )\__/       "
+        print "         -  \  /  -         "
+        print "            |  |            "
+        print "            |  |            "
+        print "            |  |            "
+        print "            |__|            "
+        print "            \/\/            "
+
+
+    if(graphic == "win"):
+        print "            |^^|"
+        print "  EEEEE     |__|     EEEEE  "
+        print "  EEEEEEE  (    )   EEEEEEE"
+        print "  EEEEEEE  (|**|)  EEEEEEE  "
+        print "    EEEEE  /\  /\  EEEEE        Thank you for rescuing my princess ^_^ "
+        print "      EEEEE)_||_(EEEEE      <   Your adventure has not ended yet!!"
+        print "        ee/|\__/|\ee   |        I will give all my blessing to you!!"
+        print "       eee|( __ )|eee- * -      (To be continue...) "
         print "      eeee||\  /||eeee/|    "
         print "       ee ||/  \|| ee/      "
         print "        __/(    )\__/       "
@@ -181,21 +178,16 @@ def rollDice(minNum, maxNum, difficulty):
 
 def challenge1():
 
-    print "But there are almost 20 cells in the dungeon, the fairy don't know which one is the princess locked."
-    playerGuess = raw_input("You have to guess Which cave is the princess in? (enter a number from 1 - 20)")
+    print "But there are 5 cells in the dungeon, the fairy don't know which one is the princess locked."
+    playerGuess = raw_input("You have to guess Which cave is the princess in? (enter a number from 1 - 5)")
     
-    if (princessLocation > playerGuess):
+    if (princessLocation != playerGuess):
         printGraphic("dragon")
-        print "The dragon is here. He looks angry..."
-
-
-    elif (princessLocation < playerGuess):
-        printGraphic("dragon")
-        print "The dragon is here. He looks angry..."
+        print "The dragon is here!!!!!!!! (Game Over)"
     
     else:
         print "\033[5;31;47m" + "You found the princess! The dragon is very angry now!!!!!!!!!!!!!!" + "\033[0m"
-        printGraphic("dragonMad")
+        printGraphic("princess")
         challenge2()
         
 
@@ -207,7 +199,7 @@ def challenge2():
     difficulty = 10
     roll = rollDice(0, 20, difficulty)
     if (roll >= difficulty):
-        printGraphic("princess")
+        printGraphic("win")
         print "\033[5;31;47m" + "You defeated the dragon and save the princess~~~" + "\033[0m"
 
 
@@ -235,13 +227,11 @@ def entrance():
 def startPoint():
     time.sleep(1)
     print " "
-    printGraphic("fairy")
-    print " "
     print name + ", welcome! you are chosen to be part of the great adventure ever." 
     print "You found yourself in a forest, and there's a fairy standing infront of you."
     raw_input("press enter to talk to the fairy >")
     print " "
-    print "Fairy: " + name + ", thank you for coming. My princess was kidnap by a evil dragon, would you please rescue her?"
+    printGraphic("fairy")
     print " "
     question = raw_input("Do you want to rescue the princess? > (Yes/No)")
 
